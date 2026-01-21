@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: temp-data
+      author: Hyman
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: name
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$12$afkLLn5s5fOgADAnqxim2OAMsNrLtqbddh047jm.wpC4kvhA4YACu"
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: "ADMIN"
+        - insert:
+            tableName: role
+            columns:
+              - column:
+                  name: name
+                  value: "USER"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id_user
+                  value: 1
+              - column:
+                  name: id_role
+                  value: 1
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id_user
+                  value: 1
+              - column:
+                  name: id_role
+                  value: 2

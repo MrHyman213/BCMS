@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: creating_user_role
+      author: Hyman
+      changes:
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: id_user
+                  type: int
+                  constraints:
+                    referencedTableName: user
+                    referencedColumnNames: id
+                    foreignKeyName: fk_user_role_user
+                    onDelete: SET NULL
+              - column:
+                  name: id_role
+                  type: int
+                  constraints:
+                    referencedTableName: role
+                    referencedColumnNames: id
+                    foreignKeyName: fk_user_role_role
+                    onDelete: SET NULL
+            primaryKey:
+              columnNames: id_user, id_role
+              constraintName: pk_user_role
