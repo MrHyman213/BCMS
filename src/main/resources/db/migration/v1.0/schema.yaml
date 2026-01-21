@@ -1,0 +1,95 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tables
+      author: Hyman
+      changes:
+        # Пользователь
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+
+        # Роль
+        - createTable:
+            tableName: role
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+
+        # Статус
+        - createTable:
+            tableName: status
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+        # Банковская карта
+        - createTable:
+            tableName: card
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: id_user
+                  type: int
+                  constraints:
+                    referencedTableName: user
+                    referencedColumnNames: id
+                    foreignKeyName: fk_card_user
+                    onDelete: SET NULL
+              - column:
+                  name: id_status
+                  type: int
+                  constraints:
+                    referencedTableName: status
+                    referencedColumnNames: id
+                    foreignKeyName: fk_card_status
+                    onDelete: SET NULL
+              - column:
+                  name: number
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+                    unique: true
+                    uniqueConstraintName: uk_card_number
+              - column:
+                  name: period
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance
+                  type: float
+                  defaultValue: 0
