@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-default-values-on-status
+      author: Hyman
+      changes:
+        - insert:
+            tableName: status
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: name
+                  value: "Активирован"
+        - insert:
+            tableName: status
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: name
+                  value: "Заблокирован"
+        - insert:
+            tableName: status
+            columns:
+              - column:
+                  name: id
+                  value: 3
+              - column:
+                  name: name
+                  value: "Истек срок"

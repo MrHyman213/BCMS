@@ -2,7 +2,7 @@ package org.hyman.BCMS.config;
 
 import lombok.RequiredArgsConstructor;
 import org.hyman.BCMS.security.JwtFilter;
-import org.hyman.BCMS.security.UserService;
+import org.hyman.BCMS.security.UserSecurityService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,7 +28,7 @@ import org.springframework.web.cors.CorsConfiguration;
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
-    private final UserService userService;
+    private final UserSecurityService userService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
@@ -49,7 +49,7 @@ public class SecurityConfig {
                     configuration.addAllowedHeader("Cache-Control");
                     return configuration;
                 })).authorizeHttpRequests(request -> request
-                        .requestMatchers("/test").authenticated()
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .exceptionHandling(configurer -> configurer

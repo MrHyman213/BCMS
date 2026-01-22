@@ -1,7 +1,7 @@
 package org.hyman.BCMS.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.hyman.BCMS.dto.JwtRequest;
+import org.hyman.BCMS.dto.auth.JwtRequest;
 import org.hyman.BCMS.security.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

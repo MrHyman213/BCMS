@@ -2,8 +2,8 @@ package org.hyman.BCMS.security;
 
 import lombok.RequiredArgsConstructor;
 import org.hyman.BCMS.dto.BodyError;
-import org.hyman.BCMS.dto.JwtRequest;
-import org.hyman.BCMS.dto.JwtResponse;
+import org.hyman.BCMS.dto.auth.JwtRequest;
+import org.hyman.BCMS.dto.auth.JwtResponse;
 import org.hyman.BCMS.util.JWTUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private final AuthenticationManager manager;
-    private final UserService userService;
+    private final UserSecurityService userService;
     private final JWTUtil jwtUtil;
 
     public ResponseEntity<?> createAuthToken(JwtRequest request){

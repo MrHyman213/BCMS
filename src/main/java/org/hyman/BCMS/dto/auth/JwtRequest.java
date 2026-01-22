@@ -1,4 +1,4 @@
-package org.hyman.BCMS.dto;
+package org.hyman.BCMS.dto.auth;
 
 import lombok.Data;
 

@@ -17,6 +17,9 @@ public class User {
     private String name;
     private String password;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<BankCard> bankCards;
+
     @ManyToMany
     @JoinTable(
             name = "user_role",
