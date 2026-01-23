@@ -31,7 +31,7 @@ public class SecurityConfig {
     private final UserSecurityService userService;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http){
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(request -> {
@@ -60,13 +60,13 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider daoAuthenticationManager(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userService);
-        provider.setPasswordEncoder(encoder());
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(encoder());
+        provider.setUserDetailsService(userService);
         return provider;
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration){
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
 

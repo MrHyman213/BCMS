@@ -1,8 +1,10 @@
 package org.hyman.BCMS.dto.card;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
+@Schema(description = "the form for creating a bank card (simple version)")
 public class CardCreateRequest {
 
 
